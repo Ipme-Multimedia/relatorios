@@ -2,6 +2,7 @@
 (function(){
   var P=window.PAINEL, app=document.getElementById('app');
   var TABS=[['resumo','Resumo'],['reservas','Reservas'],['objetivos','Objetivos'],['redes','Redes'],['anuncios','Anúncios']];
+  if(P.separadores)TABS=TABS.filter(function(t){return P.separadores.indexOf(t[0])>-1});
   var fmt=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')};
   var vtag=function(v){if(!v)return'';var c=v.charAt(0)==='▲'?'up':(v.charAt(0)==='▼'?'dn':'eq');return '<span class="v '+c+'">'+v+'</span>'};
   var meses=P.meses.slice().sort(function(a,b){return a.id<b.id?1:-1});
@@ -35,9 +36,9 @@
       var txt=o.atual<o.partida?'abaixo do ponto de partida ('+fmt(o.partida)+')':p+'% do caminho desde '+fmt(o.partida);
       s+='<div class="goal"><div class="h">'+o.nome+' <span>'+fmt(o.atual)+' de '+fmt(o.meta)+'</span></div><div class="d">'+o.indicador+'</div><div class="track"><i class="'+(p?'':'z')+'" style="width:'+p+'%"></i></div><div class="f">'+txt+'</div></div>';
     });
-    var serie=P.serie, vals=serie.map(function(m){var x=P.meses.filter(function(y){return y.id===m[0]})[0];return x&&x.reservas?x.reservas.pedidos.length:null});
+    var serie=P.serie, vals=serie.map(function(m){var x=P.meses.filter(function(y){return y.id===m[0]})[0];if(P.graficoTitulo)return x&&x.grafico!=null?x.grafico:null;return x&&x.reservas?x.reservas.pedidos.length:null});
     var mx=Math.max.apply(null,vals.filter(function(v){return v!==null}).concat([1]));
-    s+='<div class="box"><div class="k">Pedidos de mesa pelo site, mês a mês</div><div class="cols">'+vals.map(function(v){return v===null?'<div><i class="e"></i></div>':'<div><b>'+v+'</b><i class="y" style="height:'+Math.max(6,Math.round(v/mx*80))+'%"></i></div>'}).join('')+'</div><div class="lbs">'+serie.map(function(m){return'<span>'+m[1]+'</span>'}).join('')+'</div></div>';
+    s+='<div class="box"><div class="k">'+(P.graficoTitulo||'Pedidos de mesa pelo site, mês a mês')+'</div><div class="cols">'+vals.map(function(v){return v===null?'<div><i class="e"></i></div>':'<div><b>'+(P.graficoFmt?P.graficoFmt(v):v)+'</b><i class="y" style="height:'+Math.max(6,Math.round(v/mx*80))+'%"></i></div>'}).join('')+'</div><div class="lbs">'+serie.map(function(m){return'<span>'+m[1]+'</span>'}).join('')+'</div></div>';
     if(M.objetivosNota)s+='<p class="nota">'+M.objetivosNota+'</p>';
     return s;
   }
