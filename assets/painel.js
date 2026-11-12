@@ -18,7 +18,7 @@
     if(M.publicacoes&&M.publicacoes.length){s+='<h2 class="sec">As publicações do mês</h2>'+posts(M.publicacoes)}
     return s;
   }
-  function posts(L){return L.map(function(p,i){return '<a class="post" href="'+p.url+'" target="_blank" rel="noopener"><img src="'+p.img+'" alt="" loading="lazy"><div><span class="pos">'+(i+1)+'.º · '+p.formato+'</span><div class="t">'+p.titulo+'</div><div class="s">'+p.texto+'</div><div class="ver">Ver no Instagram</div></div></a>'}).join('')}
+  function posts(L){return L.map(function(p,i){return '<a class="post" href="'+p.url+'" target="_blank" rel="noopener"><img src="'+p.img+'" alt="" loading="lazy"><div><span class="pos">'+(i+1)+'.º · '+p.formato+'</span><div class="t">'+p.titulo+'</div><div class="s">'+p.texto+'</div><div class="ver">Ver no '+(p.rede||'Instagram')+'</div></div></a>'}).join('')}
   function reservas(M){
     var R=M.reservas; if(!R)return '<div class="ins">Sem dados de reservas neste mês.</div>';
     var mx=Math.max.apply(null,R.porDia.map(function(d){return d[1]}))||1;
