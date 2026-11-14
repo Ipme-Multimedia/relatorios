@@ -27,7 +27,7 @@ window.PAINEL = {
         ],
         proximoTitulo: "Em novembro vamos",
         proximo: [
-          "Publicar 3 reels: os 40 anos da quinta (7/11) e dois casamentos reais com festa (14/11 e 24/11)",
+          "Publicar 3 reels: os 40 anos da quinta (7/11), as decorações (14/11) e a festa num casamento real (24/11)",
           "Mostrar as pessoas da quinta, a começar pela equipa que recebe os noivos (21/11)",
           "Medir convosco os casamentos marcados para 2027 e quantos pedidos da campanha deram visita"
         ]
