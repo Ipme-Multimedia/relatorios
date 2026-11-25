@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Recolha Surviaria</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&family=Carlito:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --bg:#F7F6F1; --surface:#FFFFFF; --ink:#1A1A1A; --muted:#6B6960; --line:#E2DFD5; --soft:#EFEDE6;
+  --yellow:#F8EB21; --band:#1A1A1A; --band-ink:#F7F6F1; --band-muted:#CFCCC2;
+  --f-display:'Questrial','Century Gothic','URW Gothic',Arial,sans-serif;
+  --f-body:'Carlito',Calibri,'Lato',Arial,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141413; --surface:#1E1E1C; --ink:#F2F0E9; --muted:#A9A69C; --line:#34332F; --soft:#26251F; --band:#0B0B0A; --band-ink:#F2F0E9; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141413; --surface:#1E1E1C; --ink:#F2F0E9; --muted:#A9A69C; --line:#34332F; --soft:#26251F; --band:#0B0B0A; --band-ink:#F2F0E9; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--f-body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+img{max-width:100%;display:block}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance}
+p{margin:0}
+.k{font:700 11px/1.2 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.note{font-size:15px;color:var(--muted)}
+.band{background:var(--band);color:var(--band-ink)}
+.band .wrap{padding-block:28px 30px;display:grid;gap:18px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:38px;height:38px;border-radius:4px}
+.brand span{font:700 11px/1.3 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--band-muted)}
+.tag{display:inline-block;background:var(--yellow);color:#1A1A1A;font:700 11px var(--f-body);letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:4px}
+.band h1{font-size:clamp(30px,5vw,46px);line-height:1.06;margin-top:12px}
+.band .sub{color:var(--band-muted);font-size:18px;margin-top:8px;max-width:60ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:#3A3A37;border:1px solid #3A3A37;border-radius:6px;overflow:hidden}
+.facts div{background:var(--band);padding:11px 14px}
+.facts b{display:block;font:700 10px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:3px}
+main .wrap{padding-block:32px 56px;display:grid;gap:48px}
+main .wrap>*{min-width:0}
+.sec-h{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.sec-h .n{width:32px;height:32px;border-radius:6px;background:var(--yellow);color:#1A1A1A;display:grid;place-items:center;font:700 15px var(--f-display);flex:none}
+.sec-h h2{font-size:26px}
+.lead{color:var(--muted);max-width:66ch;margin:2px 0 18px}
+.month{margin-top:22px}
+.month:first-of-type{margin-top:0}
+.month>.k{margin-bottom:10px;color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+.card .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{font:700 10px var(--f-body);letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:20px;background:var(--soft);color:var(--muted)}
+.pill.hum{background:var(--yellow);color:#1A1A1A}
+.card h3{font-size:19px;line-height:1.2}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:4px 0}
+.strip img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:4px;background:var(--soft)}
+.card .who{font-size:15px;color:var(--muted)}
+.card .who b{color:var(--ink);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th{font:700 11px var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.h{font:700 14px var(--f-mono);white-space:nowrap}
+.tablewrap{overflow-x:auto}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px}
+.box.dark{background:var(--band);color:var(--band-ink);border-color:var(--band)}
+.box.dark .k{color:var(--yellow)}
+ul.l{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+ul.l li{padding-left:18px;position:relative}
+ul.l li:before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--yellow);border-radius:2px}
+.sign{border-top:2px solid var(--ink);padding-top:16px;display:grid;gap:4px}
+.sign b{font-family:var(--f-display);font-weight:400;font-size:20px}
+@media (max-width:700px){.two{grid-template-columns:1fr}}
+</style></head><body>
+
+<header class="band">
+  <div class="wrap">
+    <div class="brand"><img src="img/ipme.png" alt="Ipme Multimédia"><span>Ipme Multimédia</span></div>
+    <div>
+      <span class="tag">Recolha de fotografia e vídeo</span>
+      <h1>Surviaria</h1>
+      <p class="sub">O plano para quinta-feira: o que vamos filmar, quem precisamos que esteja presente e o que pedimos que preparem.</p>
+    </div>
+    <div class="facts">
+      <div><b>Quando</b>Quinta-feira, 26/11/2026, das 9h30 às 12h30 e das 14h00 às 17h30</div>
+      <div><b>Onde</b>Surviaria e ruas à volta, no centro de Amarante</div>
+      <div><b>Da nossa parte</b>Hugo dos Santos e João</div>
+      <div><b>Para</b>Os conteúdos de dezembro, janeiro e fevereiro</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <section>
+    <div class="sec-h"><span class="n">1</span><h2>Os vídeos</h2></div>
+    <p class="lead">São 12 vídeos curtos, 4 por mês, e 2 de reserva. Em cada mês há 2 vídeos com humor, feitos só com a equipa da casa, e 2 mais simples, a mostrar os pratos e as cervejas. As falas são uma ideia: cada um diz por palavras suas, não é para decorar. As imagens são ilustrações em 3D, só para mostrar como vai ser cada plano.</p>
+    <div id="meses"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><span class="n">2</span><h2>Quem precisamos, e quando</h2></div>
+    <p class="lead">De manhã, antes de abrir, filmamos as cervejas e os pratos. À tarde, depois do almoço, os vídeos com a equipa e as imagens da rua. Se entrar alguém, continuamos a filmar à volta ou esperamos uns minutos.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Hora</th><th>Onde</th><th>O que fazemos</th><th>Quem tem de estar</th></tr></thead>
+      <tbody>
+        <tr><td class="h">9h30</td><td>Balcão</td><td>A Survia, a cerveja do mês e o "tradutor de cervejês"</td><td>Zé e Sura</td></tr>
+        <tr><td class="h">10h30</td><td>Cozinha e uma mesa do piso 0</td><td>Os petiscos novos, o bitoque e a francesinha, em vídeo e fotografia</td><td>Quem está na cozinha, e a Sura ou a colega para levar os pratos</td></tr>
+        <tr><td class="h">12h00</td><td>Uma mesa do piso 0</td><td>A primeira prova dos petiscos novos</td><td>Sura e a colega de sala</td></tr>
+        <tr><td class="h">14h00</td><td>Sala do piso 1</td><td>Os vídeos de Natal, da dieta, da francesinha sem nada e de Carnaval</td><td>Zé, Sura e a colega de sala</td></tr>
+        <tr><td class="h">15h45</td><td>Balcão</td><td>"É só um fino"</td><td>Sura</td></tr>
+        <tr><td class="h">16h15</td><td>Fachada, esplanada, ruas e ponte de São Gonçalo</td><td>Imagens da casa por fora e da zona histórica, antes de escurecer</td><td>Ninguém da casa</td></tr>
+        <tr><td class="h">17h10</td><td>Os dois pisos</td><td>Fotografias da equipa e do espaço com as luzes acesas</td><td>Zé, Sura e a colega de sala, para uma fotografia juntos</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" style="margin-top:10px">Quem preferir não aparecer de cara pode ser filmado de costas ou só pelas mãos.</p>
+  </section>
+
+  <section>
+    <div class="sec-h"><span class="n">3</span><h2>O que pedimos</h2></div>
+    <div class="two">
+      <div class="box dark">
+        <p class="k">Confirmar até quinta-feira, 26/11, às 11h00</p>
+        <ul class="l">
+          <li>Que a cozinha consegue ter os pratos a sair a partir das 10h30</li>
+          <li>O nome da colega de sala e de quem vai estar na cozinha</li>
+          <li>As 3 cervejas para os vídeos da "cerveja do mês" (que vão estar nas torneiras em janeiro e fevereiro)</li>
+          <li>Se a cozinha consegue fazer uma tosta mista para o vídeo da francesinha</li>
+        </ul>
+      </div>
+      <div class="box">
+        <p class="k">Preparar para quinta-feira</p>
+        <ul class="l">
+          <li>De manhã, a partir das 10h30: moelinhas, polvo com molho verde, fígado de cebolada, bola de carne, pinchos, bitoque e uma francesinha</li><li>À tarde, a partir das 14h00: duas francesinhas, uma salada, uma tosta mista e uma travessa de petiscos para a mesa de Natal</li>
+          <li>Uma mesa comprida no piso 1, posta para 8, com copos e sem pessoas</li>
+          <li>2 ou 3 gorros de Pai Natal</li>
+          <li>Adereços para o vídeo de Carnaval, o que conseguirem: óculos, um chapéu, uma peruca, um bigode, um lenço ou um boné</li>
+          <li>A Survia na torneira, a Erdinger, a Guinness e a Go Man Go da Dois Corvos</li>
+          <li>Avisar a equipa e, se houver clientes, dizer-lhes que estamos a filmar</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note" style="margin-top:12px">Levamos as folhas de autorização de imagem para a equipa assinar no próprio dia.</p>
+  </section>
+
+  <div class="sign">
+    <p class="k">Ipme Multimédia</p>
+    <b>Hugo dos Santos</b>
+    <p>913 954 729 · hugo.santos@iniciativapme.pt</p>
+  </div>
+
+</div>
+</main>
+
+<script>
+const MESES=[
+ {m:'Dezembro',r:[
+  {i:['r1-1', 'r1-3', 'r1-4', 'r1-5'],t:'O jantar de Natal de quem trabalha no Natal',h:1,w:'O Zé anuncia, de gorro, que este ano há jantar de Natal da equipa. Festa. "Quando?" "Em janeiro." Quem trabalha em restauração sabe que em dezembro se serve o jantar dos outros. Fecha com a mesa comprida a encher de pratos e o convite para os grupos reservarem.',p:'Zé, Sura e a colega de sala'},
+  {i:['r2-1', 'r2-3', 'r2-7', 'r2-8'],t:'É só um fino',h:1,w:'Um cliente ao balcão, às 19h00, "só para um fino". Não tira os olhos do que a Sura leva às outras mesas: as moelinhas, o polvo, uma cerveja preta, outra loira. Toca o telemóvel, em plano fechado: "Já vou sair, foi só um fino." Desliga, a câmara afasta-se e vê-se o balcão cheio de copos e pratos vazios, com a Sura ao fundo a pôr as cadeiras em cima das mesas. No ecrã: "Era só um fino."',p:'Sura, e o Hugo como cliente'},
+  {i:['r3-1', 'r3-2', 'r3-5', 'r3-6'],t:'Os petiscos novos',h:0,w:'Os cinco petiscos novos a sair da cozinha, um a um, de perto, com o som da cozinha. Cada prato dá também um vídeo curto de 10 segundos, só com o nome do prato.',p:'Quem está na cozinha'},
+  {i:['r4-1', 'r4-2', 'r4-3'],t:'A Survia pelo Zé',h:0,w:'O Zé tira uma Survia e conta, em duas frases, como começou a fazê-la numa garagem com o tio.',p:'Zé'}]},
+ {m:'Janeiro',r:[
+  {i:['r5-1', 'r5-3', 'r5-4', 'r5-5'],t:'Janeiro, mês da dieta',h:1,w:'Duas amigas à mesa, a 2 de janeiro. Uma pede uma salada, muito convicta: este ano é que é. A outra pede uma francesinha. Quando a francesinha chega, a da salada não tira os olhos dela e acaba por chamar o Zé: "Afinal traga-me uma também." O Zé traz a segunda francesinha. No ecrã: "Afinal, a dieta começa segunda."',p:'Sura e a colega de sala (como clientes) e o Zé'},
+  {i:['r6-1', 'r6-3', 'r6-4', 'r6-5'],t:'A francesinha sem nada',h:1,w:'Um cliente que nunca se vê pede a francesinha sem molho, sem queijo, sem ovo e sem salsicha. O Zé ouve o pedido e olha para a câmara. Chega à mesa uma tosta mista. No fim, a francesinha a sério.',p:'Sura e Zé'},
+  {i:['r7-1', 'r7-2', 'r7-3'],t:'Bitoque ao almoço',h:0,w:'O ovo a cair sobre o bife e a gema a escorrer para as batatas. Para os almoços de janeiro.',p:'Quem está na cozinha'},
+  {i:['r8-1', 'r8-2', 'r8-3'],t:'A cerveja do mês',h:0,w:'Torneira, copo e primeiro gole. O Zé diz o nome, o estilo e a que sabe, numa frase. 15 segundos, publicado no início de cada mês. Gravamos 3 cervejas seguidas: janeiro, fevereiro e março. A nossa sugestão: durante esse mês, a cerveja fica em destaque no balcão ou com um preço especial. Fica ao vosso critério.',p:'Zé'}]},
+ {m:'Fevereiro',r:[
+  {i:['r9-2', 'r9-3', 'r9-4', 'r9-5'],t:'Tradutor de cervejês',h:1,w:'O Zé descreve três cervejas numa frase muito técnica. A Sura traduz em três palavras: "é preta e é para beber devagar", "é de trigo e é levezinha", "sabe a manga e é azedinha". O vídeo tem cerca de 20 segundos.',p:'Zé e Sura'},
+  {i:['r10-2', 'r10-3', 'r10-4', 'r10-6'],t:'Os clientes que todos conhecemos',h:1,w:'Para o Carnaval, a Sura faz de vários clientes, cada um com um adereço: o que pede "uma cerveja normal", o que divide a conta por nove, o que pergunta se a francesinha pica e o que chama "ó chefe".',p:'Sura, e a colega de sala ao balcão'},
+  {i:['r11-1', 'r11-2', 'r11-3'],t:'A francesinha a abrir',h:0,w:'A francesinha cortada ao meio em câmara lenta: o queijo a esticar e o molho a escorrer.',p:'Quem está na cozinha'},
+  {i:['r8-1', 'r8-3'],t:'A cerveja do mês',h:0,w:'A cerveja de fevereiro, no mesmo formato.',p:'Zé'}]},
+ {m:'Reserva',r:[
+  {i:['r13-1'],t:'A primeira prova',h:0,w:'A Sura e a colega provam os petiscos novos pela primeira vez, sem ensaio, e dizem o que acham.',p:'Sura e a colega de sala'},
+  {i:['r14-1'],t:'Uma tarde na Surviaria',h:0,w:'A rua, a fachada, os dois pisos e o balcão com as luzes acesas.',p:'Ninguém da casa'}]}
+];
+document.getElementById('meses').innerHTML=MESES.map(g=>`<div class="month"><p class="k">${g.m}</p><div class="cards">${g.r.map(c=>`<div class="card"><div class="top"><span class="pill${c.h?' hum':''}">${c.h?'Com humor':'Simples'}</span></div><h3>${c.t}</h3><div class="strip">${c.i.map(x=>`<img src="img/${x}.jpg" alt="" loading="lazy">`).join('')}</div><p class="note">${c.w}</p><p class="who"><b>Quem:</b> ${c.p}</p></div>`).join('')}</div></div>`).join('');
+</script>
+</body></html>
